@@ -1,0 +1,1 @@
+{"asset 1": "AMAT", "asset 2": "INTC", "res mean": -2.366035952156816e-12, "res std": 0.048694707594925085, "adj rsquared": 0.5350198903904473, "constant": 6.469490881460851, "hedge ratio": 0.08118644103209048, "half life": 22.5, "p-value of adf test": 0.015785191777953192, "adjustment coef": -0.0251379891816206}
