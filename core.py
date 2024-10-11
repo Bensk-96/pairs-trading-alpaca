@@ -128,7 +128,7 @@ class DataClient():
         symbol = quote.symbol
         self._last_quote[symbol] = quote
         if quote.ask_price != 0 and quote.bid_price != 0:
-            midprice = round((quote.ask_price + quote.bid_price) * 0.5 , 2)
+            midprice = (quote.ask_price + quote.bid_price) * 0.5 
             self._last_mid_price[symbol] = midprice
         else: 
             pass        

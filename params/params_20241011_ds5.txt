@@ -1,0 +1,1 @@
+{"asset 1": "TSM", "asset 2": "AMD", "res mean": 3.006301150731421e-11, "res std": 0.5229370466099291, "adj rsquared": 0.7869611373856551, "constant": -65.64861810466985, "hedge ratio": 1.2745990826296376, "half life": 120.01111586147927, "p-value of adf test": 0.04985022038360914, "adjustment coef": -0.0024037275650904528}

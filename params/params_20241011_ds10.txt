@@ -1,0 +1,1 @@
+{"asset 1": "ASML", "asset 2": "INTC", "res mean": 3.492641072559988e-14, "res std": 0.0505206461138106, "adj rsquared": 0.4386365324419104, "constant": 13.113438290234065, "hedge ratio": 0.012260391517080799, "half life": 51.999572466866184, "p-value of adf test": 0.04560903078523914, "adjustment coef": -0.01164436173414509}

@@ -1,13 +1,22 @@
 import os
+import logging
 import ast
 import datetime
 import asyncio
-import logging
-from typing import Optional, List , Set
+from typing import Optional, List 
 from core import DataClient, OrderManager, MarketClockCalendar, Client
 from PairTrade import PairTrade
 from find_coint_pairs_and_params import PairsTradeParamsCalculation
-#logging.basicConfig(level=logging.INFO, filename='trading_log.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+
+# Create a logger
+today = datetime.datetime.today().date().strftime('%Y%m%d')
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)  # Set the log level for the logger
+file_handler = logging.FileHandler(f'logs/pairs_trade_log_{today}.txt')  # Log to file
+file_handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 async def market_open() -> None:
     marketclockcalendar = MarketClockCalendar()
@@ -65,26 +74,27 @@ if __name__ == "__main__":
     symbols = ["NVDA", "TSM", "AMD", "ASML", "AMAT", "QCOM", "INTC"] 
     today = datetime.datetime.today().date()
     lookback = 2
-    downsample = 5
+    downsample = 30
     k = 2
     data_folder = "data/"
     params_folder = "params/"
     paramsFilename = f"params_{today.strftime('%Y%m%d')}_ds{downsample}.txt"
     #paramsFilename = f"params_20241004_ds{downsample}.txt"
-
+    logging.info("Main script has started.")
     if os.path.exists(params_folder + paramsFilename):
         logging.info(f"The file {params_folder + paramsFilename} exists.")
     else:
         logging.info(f"The file {params_folder + paramsFilename} does not exist.")
-        logging.info("Search for co-integrated pairs and calculate parameters")
-        loop = asyncio.get_event_loop()
-        try:
-            loop.run_until_complete(calculate_params(symbols=symbols, lookback=lookback, downsample=downsample))
-        except KeyboardInterrupt:
-            logging.info('Stopped (KeyboardInterrupt)')
-        finally:
-            loop.run_until_complete(Client.close_session()) 
-
+        #logging.info("Search for co-integrated pairs and calculate parameters")
+        #loop = asyncio.get_event_loop()
+        #try:
+        #    loop.run_until_complete(calculate_params(symbols=symbols, lookback=lookback, downsample=downsample))
+        #except KeyboardInterrupt:
+        #    logging.info('Stopped (KeyboardInterrupt)')
+        #finally:
+        #    loop.run_until_complete(Client.close_session()) 
+        logging.info("Exit...")
+        exit()
     # Load parameters
     cointPairsparams = []
     try:
@@ -101,7 +111,6 @@ if __name__ == "__main__":
         logging.warning(f"Cannot load {paramsFilename}! Error: {e}")
         logging.info("Exit...")
         exit()
-
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(market_open()) 

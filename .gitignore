@@ -1,2 +1,5 @@
 key.txt
 .mypy_cache
+__pycache__
+myenv
+find_coint_pairs_and_params.py
