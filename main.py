@@ -26,8 +26,8 @@ async def market_open() -> None:
         if is_open:
             break
         else:
-            logging.info("Market is not open yet. Checking again in 30 seconds.")
-            await asyncio.sleep(30)
+            logging.info("Market is not open yet. Checking again in 60 seconds.")
+            await asyncio.sleep(60)
 
 async def market_time_left() -> Optional[datetime.datetime]:
     marketclockcalendar = MarketClockCalendar()
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(market_open()) 
-        loop.run_until_complete(trader(cointPairsparams=cointPairsparams, total_capital=Total_capital, downsample=downsample, k=k)) ##TODO Timeout for trader and then cancel orders and close position
+        loop.run_until_complete(trader(cointPairsparams=cointPairsparams, total_capital=Total_capital, downsample=downsample, k=k)) 
     except KeyboardInterrupt:
         logging.info('Stopped (KeyboardInterrupt)')
     finally:
