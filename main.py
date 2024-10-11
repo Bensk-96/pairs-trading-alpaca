@@ -71,11 +71,12 @@ async def trader(cointPairsparams: Optional[List[dict]], total_capital: float, d
          
 if __name__ == "__main__":
     Total_capital = 10000
-    symbols = ["NVDA", "TSM", "AMD", "ASML", "AMAT", "QCOM", "INTC"] 
-    today = datetime.datetime.today().date()
+    symbols = ["NVDA", "TSM", "AMD", "ASML", "AMAT", "QCOM", "INTC"]  
     lookback = 2
     downsample = 30
     k = 2
+    RUN_PARAMS_CALCULATOR = False
+    today = datetime.datetime.today().date()
     data_folder = "data/"
     params_folder = "params/"
     paramsFilename = f"params_{today.strftime('%Y%m%d')}_ds{downsample}.txt"
@@ -85,16 +86,19 @@ if __name__ == "__main__":
         logging.info(f"The file {params_folder + paramsFilename} exists.")
     else:
         logging.info(f"The file {params_folder + paramsFilename} does not exist.")
-        #logging.info("Search for co-integrated pairs and calculate parameters")
-        #loop = asyncio.get_event_loop()
-        #try:
-        #    loop.run_until_complete(calculate_params(symbols=symbols, lookback=lookback, downsample=downsample))
-        #except KeyboardInterrupt:
-        #    logging.info('Stopped (KeyboardInterrupt)')
-        #finally:
-        #    loop.run_until_complete(Client.close_session()) 
-        logging.info("Exit...")
-        exit()
+        
+        if RUN_PARAMS_CALCULATOR:
+            logging.info("Search for co-integrated pairs and calculate parameters")
+            loop = asyncio.get_event_loop()
+            try:
+               loop.run_until_complete(calculate_params(symbols=symbols, lookback=lookback, downsample=downsample))
+            except KeyboardInterrupt:
+                logging.info('Stopped (KeyboardInterrupt)')
+            finally:
+              loop.run_until_complete(Client.close_session()) 
+        else:
+            logging.info("Exit...")
+            exit()
     # Load parameters
     cointPairsparams = []
     try:
