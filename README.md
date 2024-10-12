@@ -7,7 +7,7 @@
    - **Step 2** : Claculate spread of the assets
    - **Step 3** : Calculate Bollinger Bands and %b of the spread 
    - **Step 4** : 
-     - Long the spread when %b > 1 or short the spread when %b < 0
+     - Long the spread when %b < 0 or short the spread when %b > 1
      - close position when %b crosses 0.5 
      - Use IOC order for trading frequency = 5 seconds, and GTC order for lower frequencies
 
