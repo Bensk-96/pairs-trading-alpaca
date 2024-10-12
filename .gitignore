@@ -2,3 +2,5 @@ key.txt
 .mypy_cache
 __pycache__
 myenv
+data
+logs
