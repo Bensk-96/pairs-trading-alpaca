@@ -70,7 +70,7 @@ async def trader(cointPairsparams: Optional[List[dict]], total_capital: float, d
         exit()
          
 if __name__ == "__main__":
-    Total_capital = 10000
+    Total_capital = 10000 
     symbols = ["NVDA", "TSM", "AMD", "ASML", "QCOM", "INTC"]  ##TODO remove ASML, TSM
     lookback = 2
     downsample = 30
